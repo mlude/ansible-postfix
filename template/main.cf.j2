@@ -28,14 +28,25 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 # information on enabling SSL in the smtp client.
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = myhost.example.org
+myhostname = {{ postfix_myhostname }}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
-mydestination = localdomain, myhost.example.org, localhost.example.org, localhost
-relayhost = 
+mydestination = {{ postfix_myhostname }}, localhost.localdomain, localhost
+relay_domains = {{ postfix_relay_domains }}
+relayhost = {{ postfix_relayhost }}
+smtp_sasl_auth_enable = {{ postfix_smtp_sasl_auth_enable }}
+smtp_sasl_password_maps = {{ postfix_smtp_sasl_password_maps }}
+smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options }}
+smtp_sasl_tls_security_options = {{ postfix_smtp_sasl_tls_security_options }}
+smtp_use_tls = {{ postfix_smtp_use_tls }}
+smtp_tls_security_level = {{ postfix_smtp_tls_security_level }}
+
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
 mailbox_command = 
 mailbox_size_limit = 0
 recipient_delimiter = +
-inet_interfaces = loopback-only
+inet_interfaces = {{ postfix_inet_interfaces }}
+
+smtp_generic_maps = {{ postfix_smtp_generic_maps }}
+
