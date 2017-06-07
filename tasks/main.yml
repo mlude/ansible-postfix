@@ -1,0 +1,5 @@
+---
+- name: ensure postfix is installed
+  apt: name=postfix state=present
+  when: ansible_distribution == "Debian"
+
