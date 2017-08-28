@@ -35,12 +35,12 @@ alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
 mydestination = {{ postfix_myhostname }}, localhost.localdomain, localhost
-relay_domains = {{ postfix_relay_domains }}
+relay_domains = {{ postfix_relay_domains|join(", ") }}
 relayhost = {{ postfix_relayhost }}
 smtp_sasl_auth_enable = {{ postfix_smtp_sasl_auth_enable }}
-smtp_sasl_password_maps = {{ postfix_smtp_sasl_password_maps }}
-smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options }}
-smtp_sasl_tls_security_options = {{ postfix_smtp_sasl_tls_security_options }}
+smtp_sasl_password_maps = {{ postfix_smtp_sasl_password_maps|join(", ") }}
+smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options|join(", ") }}
+smtp_sasl_tls_security_options = {{ postfix_smtp_sasl_tls_security_options|join(", ") }}
 smtp_use_tls = {{ postfix_smtp_use_tls }}
 smtp_tls_security_level = {{ postfix_smtp_tls_security_level }}
 
