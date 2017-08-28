@@ -15,6 +15,21 @@
     mode: 0644
   register: postfix
 
+- name: update generic
+  template:
+    src: template/generic.j2
+    dest: /etc/postfix/generic
+    owner: root
+    group: root
+    mode: 0644
+  register: postfix_generic
+
+- name: update generic.db
+  shell: |
+    cd /etc/postfix
+    postmap generic
+  when: postfix_generic.changed
+
 - name: restart postfix
   service: name=postfix state=restarted
   when: postfix.changed

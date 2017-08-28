@@ -50,5 +50,5 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = {{ postfix_inet_interfaces }}
 
-smtp_generic_maps = {{ postfix_smtp_generic_maps }}
+smtp_generic_maps = {{ postfix_smtp_generic_maps|join(", ") }}
 
