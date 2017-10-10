@@ -30,7 +30,22 @@
     postmap generic
   when: postfix_generic.changed
 
+- name: update sasl_passwd
+  template:
+    src: template/sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    owner: root
+    group: root
+    mode: 0600
+  register: postfix_sasl_passwd
+
+- name: update sasl_passwd.db
+  shell: |
+    cd /etc/postfix
+    postmap sasl_passwd
+  when: postfix_sasl_passwd.changed
+
 - name: restart postfix
   service: name=postfix state=restarted
-  when: postfix.changed
+  when: postfix.changed or postfix_sasl_passwd.changed
 

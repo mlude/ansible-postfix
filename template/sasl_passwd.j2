@@ -1,0 +1,3 @@
+{% for item in postfix_map_sasl_passwd %}
+{{ "%-31s"|format(item[0]) }} {{ item[1] }}
+{% endfor %}
