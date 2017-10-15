@@ -1,4 +1,8 @@
 ---
+postfix_smtpd_tls_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+postfix_smtpd_tls_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
+postfix_smtpd_use_tls: "yes"
+
 postfix_inet_interfaces: "all"
 postfix_myhostname: "{{ ansible_fqdn }}"
 postfix_relay_domains:
