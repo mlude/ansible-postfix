@@ -19,10 +19,10 @@ postfix_relayhost: ""
 
 postfix_smtp_generic_maps:
   - ""
-postfix_map_generic:
-  - [ "", "" ]
-postfix_map_sasl_passwd:
-  - [ "", "" ]
+postfix_map_generic: []
+#  - [ "", "" ]
+postfix_map_sasl_passwd: []
+#  - [ "", "" ]
 
 postfix_smtp_sasl_auth_enable: "no"
 postfix_smtp_sasl_password_maps:
