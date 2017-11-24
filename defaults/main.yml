@@ -1,4 +1,8 @@
 ---
+# for /etc/mailname on Debian systems
+postfix_mailname: "{{ ansible_domain }}"
+
+# for /etc/postfix/main.cf
 postfix_smtpd_tls_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
 postfix_smtpd_tls_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
 postfix_smtpd_use_tls: "yes"

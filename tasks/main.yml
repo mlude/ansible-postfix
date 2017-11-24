@@ -6,6 +6,16 @@
 - name: ensure postfix is running
   service: name=postfix enabled=yes state=started
 
+- name: update mailname
+  template:
+    src: template/mailname.j2
+    dest: /etc/mailname
+    owner: root
+    group: root
+    mode: 0644
+  register: postfix
+  when: ansible_distribution == "Debian"
+
 - name: update main.cf
   template:
     src: template/main.cf.j2
