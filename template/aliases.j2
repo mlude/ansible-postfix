@@ -1,0 +1,6 @@
+# See man 5 aliases for format
+postmaster: root
+
+{% for item in postfix_aliases %}
+{{ item[0] }}: {{ item[1] }}
+{% endfor %}

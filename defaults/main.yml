@@ -1,4 +1,8 @@
 ---
+# for /etc/aliases
+postfix_aliases: []
+#  - [ "", "" ]
+
 # for /etc/mailname on Debian systems
 postfix_mailname: "{{ ansible_domain }}"
 

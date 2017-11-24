@@ -6,6 +6,20 @@
 - name: ensure postfix is running
   service: name=postfix enabled=yes state=started
 
+- name: update aliases
+  template:
+    src: template/aliases.j2
+    dest: /etc/aliases
+    owner: root
+    group: root
+    mode: 0644
+  register: postfix_aliases
+
+- name: update aliases.db
+  shell: |
+    newaliases
+  when: postfix_aliases.changed
+
 - name: update mailname
   template:
     src: template/mailname.j2
