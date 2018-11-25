@@ -8,7 +8,7 @@
 
 - name: update aliases
   template:
-    src: template/aliases.j2
+    src: templates/aliases.j2
     dest: /etc/aliases
     owner: root
     group: root
@@ -22,7 +22,7 @@
 
 - name: update mailname
   template:
-    src: template/mailname.j2
+    src: templates/mailname.j2
     dest: /etc/mailname
     owner: root
     group: root
@@ -32,7 +32,7 @@
 
 - name: update main.cf
   template:
-    src: template/main.cf.j2
+    src: templates/main.cf.j2
     dest: /etc/postfix/main.cf
     owner: root
     group: root
@@ -41,7 +41,7 @@
 
 - name: update generic
   template:
-    src: template/generic.j2
+    src: templates/generic.j2
     dest: /etc/postfix/generic
     owner: root
     group: root
@@ -56,7 +56,7 @@
 
 - name: update sasl_passwd
   template:
-    src: template/sasl_passwd.j2
+    src: templates/sasl_passwd.j2
     dest: /etc/postfix/sasl_passwd
     owner: root
     group: root
