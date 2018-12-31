@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 # Global Postfix configuration file. This file lists only a subset
 # of all parameters. For the syntax, and for a complete parameter
 # list, see the postconf(5) manual page (command: "man 5 postconf").
@@ -677,3 +679,22 @@ sample_directory = /usr/share/doc/postfix-2.10.1/samples
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/share/doc/postfix-2.10.1/README_FILES
+
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+myhostname = {{ postfix_myhostname }}
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+mydestination = {{ postfix_myhostname }}, localhost.localdomain, localhost
+relay_domains = {{ postfix_relay_domains|join(", ") }}
+relayhost = {{ postfix_relayhost }}
+smtp_sasl_auth_enable = {{ postfix_smtp_sasl_auth_enable }}
+smtp_sasl_password_maps = {{ postfix_smtp_sasl_password_maps|join(", ") }}
+smtp_sasl_security_options = {{ postfix_smtp_sasl_security_options|join(", ") }}
+smtp_sasl_tls_security_options = {{ postfix_smtp_sasl_tls_security_options|join(", ") }}
+smtp_use_tls = {{ postfix_smtp_use_tls }}
+smtp_tls_security_level = {{ postfix_smtp_tls_security_level }}
+
+inet_interfaces = {{ postfix_inet_interfaces }}
+
+smtp_generic_maps = {{ postfix_smtp_generic_maps|join(", ") }}
+
