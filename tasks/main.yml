@@ -1,7 +1,7 @@
 ---
 - name: ensure postfix is installed
   apt: name=postfix state=present
-  when: ansible_distribution == "Debian"
+  when: ansible_distribution_file_variety == "Debian"
 
 - name: ensure postfix is running
   service: name=postfix enabled=yes state=started
@@ -28,7 +28,7 @@
     group: root
     mode: 0644
   register: postfix
-  when: ansible_distribution == "Debian"
+  when: ansible_distribution_file_variety == "Debian"
 
 - name: update main.cf
   template:
